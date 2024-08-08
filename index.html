@@ -4,19 +4,234 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입 폼</title>
-    <script>
-      src = "https://code.jquery.com/jquery-3.7.1.js";
-      integrity = "sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=";
-      crossorigin = "anonymous";
-    </script>
-    
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif; /* 전체 텍스트에 적용할 기본 폰트 설정 */
+        margin: 20px; /* 페이지의 여백 설정 */
+      }
+      .signup-form {
+        max-width: 400px; /* 폼의 최대 너비 설정 */
+        margin: 0 auto; /* 폼을 페이지 중앙에 배치 */
+      }
+      label {
+        display: block; /* 레이블을 블록 요소로 설정하여 줄바꿈 */
+        margin-bottom: 8px; /* 레이블 아래 여백 설정 */
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%; /* 입력 필드 너비를 100%로 설정하여 부모 요소에 맞춤 */
+        padding: 8px; /* 입력 필드 내부 여백 설정 */
+        margin-bottom: 4px; /* 입력 필드 아래 여백 설정 */
+        box-sizing: border-box; /* 패딩과 테두리를 너비에 포함하여 정확한 너비 조정 */
+      }
+      .error-message {
+        color: red; /* 에러 메시지의 텍스트 색상을 빨간색으로 설정 */
+        font-size: 0.875em; /* 에러 메시지의 폰트 크기 설정 */
+        margin: 0; /* 에러 메시지의 여백을 0으로 설정 */
+      }
+      .gender-group {
+        display: flex; /* 성별 선택 항목을 플렉스 박스 레이아웃으로 배치 */
+        margin-bottom: 16px; /* 성별 선택 항목 아래 여백 설정 */
+      }
+      .gender-group label {
+        display: flex; /* 성별 레이블을 플렉스 박스 레이아웃으로 배치 */
+        align-items: center; /* 레이블 안의 요소들을 수직 가운데 정렬 */
+        margin-right: 16px; /* 레이블 오른쪽 여백 설정 */
+      }
+      .gender-group input[type="radio"] {
+        margin-right: 8px; /* 라디오 버튼 오른쪽 여백 설정 */
+      }
+      .terms-group {
+        margin-bottom: 16px; /* 약관 동의 항목 아래 여백 설정 */
+      }
+      .terms-group label {
+        display: flex; /* 약관 동의 레이블을 플렉스 박스 레이아웃으로 배치 */
+        align-items: center; /* 레이블 안의 요소들을 수직 가운데 정렬 */
+      }
+      .terms-group input[type="checkbox"] {
+        margin-right: 8px; /* 체크박스 오른쪽 여백 설정 */
+      }
+      button {
+        padding: 10px 20px; /* 버튼의 내부 여백 설정 */
+        background-color: #007bff; /* 버튼 배경 색상 설정 */
+        color: #fff; /* 버튼 텍스트 색상 설정 */
+        border: none; /* 버튼의 기본 테두리 제거 */
+        border-radius: 5px; /* 버튼의 모서리를 둥글게 설정 */
+        cursor: pointer; /* 버튼에 커서를 올렸을 때 포인터 모양으로 변경 */
+      }
+      button:hover {
+        background-color: #0056b3; /* 버튼 위에 마우스를 올렸을 때 배경 색상 변경 */
+      }
+    </style>
   </head>
   <body>
     <div class="signup-form">
       <h2>회원가입</h2>
-      <form id="registerForm"></form>
+      <form id="registerForm">
+        <!-- 사용자 이름 입력 필드 -->
+        <label for="name">사용자 이름</label>
+        <input type="text" id="name" name="name" />
+        <!-- 사용자 이름에 대한 에러 메시지를 표시할 영역 -->
+        <div class="error-message" id="nameError"></div>
+
+        <!-- 이메일 입력 필드 -->
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" />
+        <!-- 이메일에 대한 에러 메시지를 표시할 영역 -->
+        <div class="error-message" id="emailError"></div>
+
+        <!-- 비밀번호 입력 필드 -->
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" />
+        <!-- 비밀번호에 대한 에러 메시지를 표시할 영역 -->
+        <div class="error-message" id="passwordError"></div>
+
+        <!-- 비밀번호 확인 입력 필드 -->
+        <label for="confirmPassword">비밀번호 확인</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+        <!-- 비밀번호 확인에 대한 에러 메시지를 표시할 영역 -->
+        <div class="error-message" id="confirmPasswordError"></div>
+
+        <!-- 성별 선택 라디오 버튼 -->
+        <div class="gender-group">
+          <label>
+            <input type="radio" name="gender" value="male" /> 남자
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" /> 여자
+          </label>
+          <label>
+            <input type="radio" name="gender" value="Genderless" /> 기타
+          </label>
+        </div>
+        <!-- 성별 선택에 대한 에러 메시지를 표시할 영역 -->
+        <div class="error-message" id="genderError"></div>
+
+        <!-- 약관 동의 체크박스 -->
+        <div class="terms-group">
+          <label>
+            <input type="checkbox" id="terms" name="terms" />
+            약관에 동의합니다.
+          </label>
+          <!-- 약관 동의에 대한 에러 메시지를 표시할 영역 -->
+          <div class="error-message" id="termsError"></div>
+        </div>
+
+        <!-- 폼 제출 버튼 -->
+        <button type="submit">회원가입</button>
+      </form>
       <h3>회원가입 정보 확인</h3>
-      <div></div>
+      <!-- 회원가입 후 입력된 정보를 표시할 영역 -->
+      <div id="info"></div>
     </div>
+
+    <script>
+      $(document).ready(function () {
+        // 입력 필드 유효성 검사 함수
+        function validateFields() {
+          let isValid = true; // 모든 필드가 유효한지 여부를 나타내는 변수
+
+          // 사용자 이름 유효성 검사
+          if ($("#name").val().trim() === "") {
+            $("#nameError").text("사용자 이름을 입력해 주세요."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#nameError").text(""); // 에러 메시지 지우기
+          }
+
+          // 이메일 유효성 검사
+          if ($("#email").val().trim() === "") {
+            $("#emailError").text("이메일을 입력해 주세요."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#emailError").text(""); // 에러 메시지 지우기
+          }
+
+          // 비밀번호 유효성 검사
+          if ($("#password").val().trim() === "") {
+            $("#passwordError").text("비밀번호를 입력해 주세요."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#passwordError").text(""); // 에러 메시지 지우기
+          }
+
+          // 비밀번호 확인 유효성 검사
+          if ($("#confirmPassword").val().trim() === "") {
+            $("#confirmPasswordError").text("비밀번호 확인을 입력해 주세요."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else if ($("#confirmPassword").val() !== $("#password").val()) {
+            $("#confirmPasswordError").text(
+              "비밀번호와 비밀번호 확인이 일치하지 않습니다." // 비밀번호 불일치 에러 메시지
+            );
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#confirmPasswordError").text(""); // 에러 메시지 지우기
+          }
+
+          // 성별 유효성 검사
+          if ($('input[name="gender"]:checked').length === 0) {
+            $("#genderError").text("성별을 선택해 주세요."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#genderError").text(""); // 에러 메시지 지우기
+          }
+
+          // 약관 동의 유효성 검사
+          if (!$("#terms").is(":checked")) {
+            $("#termsError").text("약관에 동의해야 회원가입이 가능합니다."); // 에러 메시지 표시
+            isValid = false; // 유효하지 않음을 표시
+          } else {
+            $("#termsError").text(""); // 에러 메시지 지우기
+          }
+
+          return isValid; // 모든 필드가 유효한지 여부 반환
+        }
+
+        // 폼 제출 시 유효성 검사 및 정보 표시
+        $("#registerForm").on("submit", function (e) {
+          e.preventDefault(); // 폼의 기본 제출 동작 방지
+          if (validateFields()) {
+            // 유효성 검사 통과 시
+            // 입력된 정보를 HTML 형식으로 생성하여 #info 요소에 표시
+            $("#info").html(`
+                        <p><strong>사용자 이름:</strong> ${$("#name")
+                          .val()
+                          .trim()}</p>
+                        <p><strong>이메일:</strong> ${$("#email")
+                          .val()
+                          .trim()}</p>
+                        <p><strong>비밀번호:</strong> ${$(
+                          "#password"
+                        ).val()}</p>
+                        <p><strong>성별:</strong> ${$(
+                          'input[name="gender"]:checked'
+                        ).val()}</p>
+                    `);
+          }
+        });
+
+        // 실시간 유효성 검사: 입력 필드에서 입력이 발생할 때마다 유효성 검사 수행
+        $("#name, #email, #password, #confirmPassword").on(
+          "input",
+          function () {
+            validateFields(); // 유효성 검사 함수 호출
+          }
+        );
+
+        // 약관 동의 체크박스 상태가 변경될 때 유효성 검사 수행
+        $("#terms").on("change", function () {
+          validateFields(); // 유효성 검사 함수 호출
+        });
+
+        // 페이지 로드 시 초기 유효성 검사 수행
+        validateFields(); // 초기 상태에서 유효성 검사 수행
+      });
+    </script>
   </body>
 </html>
