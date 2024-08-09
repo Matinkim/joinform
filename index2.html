@@ -10,53 +10,76 @@
       crossorigin="anonymous"
     ></script>
     <style>
+      /* 전체 페이지의 기본 스타일 설정 */
       body {
-        font-family: Arial, sans-serif; /* 전체 텍스트에 적용할 기본 폰트 설정 */
+        font-family: Arial, sans-serif; /* 페이지의 기본 폰트 설정 */
         margin: 20px; /* 페이지의 여백 설정 */
       }
+
+      /* 회원가입 폼 스타일 설정 */
       .signup-form {
         max-width: 400px; /* 폼의 최대 너비 설정 */
         margin: 0 auto; /* 폼을 페이지 중앙에 배치 */
       }
+
+      /* 모든 레이블의 스타일 설정 */
       label {
         display: block; /* 레이블을 블록 요소로 설정하여 줄바꿈 */
         margin-bottom: 8px; /* 레이블 아래 여백 설정 */
       }
+
+      /* 텍스트, 이메일, 비밀번호 입력 필드의 스타일 설정 */
       input[type="text"],
       input[type="email"],
       input[type="password"] {
-        width: 100%; /* 입력 필드 너비를 100%로 설정하여 부모 요소에 맞춤 */
+        width: 100%; /* 입력 필드 너비를 부모 요소에 맞추어 100%로 설정 */
         padding: 8px; /* 입력 필드 내부 여백 설정 */
         margin-bottom: 4px; /* 입력 필드 아래 여백 설정 */
-        box-sizing: border-box; /* 패딩과 테두리를 너비에 포함하여 정확한 너비 조정 */
+        box-sizing: border-box; /* 패딩과 테두리를 너비에 포함시켜 정확한 너비 조정 */
       }
+
+      /* 에러 메시지의 스타일 설정 */
       .error-message {
         color: red; /* 에러 메시지의 텍스트 색상을 빨간색으로 설정 */
         font-size: 0.875em; /* 에러 메시지의 폰트 크기 설정 */
         margin: 0; /* 에러 메시지의 여백을 0으로 설정 */
       }
+
+      /* 성별 선택 항목의 스타일 설정 */
       .gender-group {
         display: flex; /* 성별 선택 항목을 플렉스 박스 레이아웃으로 배치 */
         margin-bottom: 16px; /* 성별 선택 항목 아래 여백 설정 */
       }
+
+      /* 성별 레이블의 스타일 설정 */
       .gender-group label {
         display: flex; /* 성별 레이블을 플렉스 박스 레이아웃으로 배치 */
         align-items: center; /* 레이블 안의 요소들을 수직 가운데 정렬 */
         margin-right: 16px; /* 레이블 오른쪽 여백 설정 */
       }
+
+      /* 성별 라디오 버튼의 스타일 설정 */
       .gender-group input[type="radio"] {
         margin-right: 8px; /* 라디오 버튼 오른쪽 여백 설정 */
       }
+
+      /* 약관 동의 체크박스 그룹의 스타일 설정 */
       .terms-group {
         margin-bottom: 16px; /* 약관 동의 항목 아래 여백 설정 */
       }
+
+      /* 약관 동의 레이블의 스타일 설정 */
       .terms-group label {
         display: flex; /* 약관 동의 레이블을 플렉스 박스 레이아웃으로 배치 */
         align-items: center; /* 레이블 안의 요소들을 수직 가운데 정렬 */
       }
+
+      /* 약관 동의 체크박스의 스타일 설정 */
       .terms-group input[type="checkbox"] {
         margin-right: 8px; /* 체크박스 오른쪽 여백 설정 */
       }
+
+      /* 폼 제출 버튼의 스타일 설정 */
       button {
         padding: 10px 20px; /* 버튼의 내부 여백 설정 */
         background-color: #007bff; /* 버튼 배경 색상 설정 */
@@ -65,6 +88,8 @@
         border-radius: 5px; /* 버튼의 모서리를 둥글게 설정 */
         cursor: pointer; /* 버튼에 커서를 올렸을 때 포인터 모양으로 변경 */
       }
+
+      /* 버튼에 마우스를 올렸을 때 스타일 변경 */
       button:hover {
         background-color: #0056b3; /* 버튼 위에 마우스를 올렸을 때 배경 색상 변경 */
       }
@@ -126,8 +151,9 @@
         <!-- 폼 제출 버튼 -->
         <button type="submit">회원가입</button>
       </form>
-      <h3>회원가입 정보 확인</h3>
+
       <!-- 회원가입 후 입력된 정보를 표시할 영역 -->
+      <h3>회원가입 정보 확인</h3>
       <div id="info"></div>
     </div>
 
@@ -139,55 +165,56 @@
 
           // 사용자 이름 유효성 검사
           if ($("#name").val().trim() === "") {
-            $("#nameError").text("사용자 이름을 입력해 주세요."); // 에러 메시지 표시
+            $("#nameError").text("사용자 이름을 입력해 주세요."); // 사용자 이름이 비어 있으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#nameError").text(""); // 에러 메시지 지우기
+            $("#nameError").text(""); // 사용자 이름이 입력되면 에러 메시지 지우기
           }
 
           // 이메일 유효성 검사
           if ($("#email").val().trim() === "") {
-            $("#emailError").text("이메일을 입력해 주세요."); // 에러 메시지 표시
+            $("#emailError").text("이메일을 입력해 주세요."); // 이메일이 비어 있으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#emailError").text(""); // 에러 메시지 지우기
+            $("#emailError").text(""); // 이메일이 입력되면 에러 메시지 지우기
           }
 
           // 비밀번호 유효성 검사
           if ($("#password").val().trim() === "") {
-            $("#passwordError").text("비밀번호를 입력해 주세요."); // 에러 메시지 표시
+            $("#passwordError").text("비밀번호를 입력해 주세요."); // 비밀번호가 비어 있으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#passwordError").text(""); // 에러 메시지 지우기
+            $("#passwordError").text(""); // 비밀번호가 입력되면 에러 메시지 지우기
           }
 
           // 비밀번호 확인 유효성 검사
           if ($("#confirmPassword").val().trim() === "") {
-            $("#confirmPasswordError").text("비밀번호 확인을 입력해 주세요."); // 에러 메시지 표시
+            $("#confirmPasswordError").text("비밀번호 확인을 입력해 주세요."); // 비밀번호 확인이 비어 있으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else if ($("#confirmPassword").val() !== $("#password").val()) {
             $("#confirmPasswordError").text(
-              "비밀번호와 비밀번호 확인이 일치하지 않습니다." // 비밀번호 불일치 에러 메시지
+              "비밀번호와 비밀번호 확인이 일치하지 않습니다." // 비밀번호와 비밀번호 확인이 일치하지 않으면 에러 메시지 표시
             );
+            isValid = false; //
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#confirmPasswordError").text(""); // 에러 메시지 지우기
+            $("#confirmPasswordError").text(""); // 비밀번호 확인이 일치하면 에러 메시지 지우기
           }
 
           // 성별 유효성 검사
           if ($('input[name="gender"]:checked').length === 0) {
-            $("#genderError").text("성별을 선택해 주세요."); // 에러 메시지 표시
+            $("#genderError").text("성별을 선택해 주세요."); // 성별이 선택되지 않으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#genderError").text(""); // 에러 메시지 지우기
+            $("#genderError").text(""); // 성별이 선택되면 에러 메시지 지우기
           }
 
           // 약관 동의 유효성 검사
           if (!$("#terms").is(":checked")) {
-            $("#termsError").text("약관에 동의해야 회원가입이 가능합니다."); // 에러 메시지 표시
+            $("#termsError").text("약관에 동의해야 회원가입이 가능합니다."); // 약관에 동의하지 않으면 에러 메시지 표시
             isValid = false; // 유효하지 않음을 표시
           } else {
-            $("#termsError").text(""); // 에러 메시지 지우기
+            $("#termsError").text(""); // 약관에 동의하면 에러 메시지 지우기
           }
 
           return isValid; // 모든 필드가 유효한지 여부 반환
@@ -200,19 +227,13 @@
             // 유효성 검사 통과 시
             // 입력된 정보를 HTML 형식으로 생성하여 #info 요소에 표시
             $("#info").html(`
-                        <p><strong>사용자 이름:</strong> ${$("#name")
-                          .val()
-                          .trim()}</p>
-                        <p><strong>이메일:</strong> ${$("#email")
-                          .val()
-                          .trim()}</p>
-                        <p><strong>비밀번호:</strong> ${$(
-                          "#password"
-                        ).val()}</p>
-                        <p><strong>성별:</strong> ${$(
-                          'input[name="gender"]:checked'
-                        ).val()}</p>
-                    `);
+              <p><strong>사용자 이름:</strong> ${$("#name").val().trim()}</p>
+              <p><strong>이메일:</strong> ${$("#email").val().trim()}</p>
+              <p><strong>비밀번호:</strong> ${$("#password").val()}</p>
+              <p><strong>성별:</strong> ${$(
+                'input[name="gender"]:checked'
+              ).val()}</p>
+            `);
           }
         });
 
